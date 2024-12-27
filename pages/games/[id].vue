@@ -43,7 +43,13 @@
 
           <form v-if="userStore.isUserLoggedIn" class="mt-6">
             <div class="mt-10 flex">
-              <button type="submit" class="flex w-1/2 flex-1 items-center justify-center rounded-md border border-transparent bg-shack-orange px-8 py-3 text-base font-medium text-shack-text hover:bg-shack-bright-orange focus:outline-none focus:ring-2 focus:ring-shack-bright-orange focus:ring-offset-2 focus:ring-offset-shack-text sm:w-full select-none">Add to cart</button>
+              <button 
+                type="submit"
+                class="flex w-1/2 flex-1 items-center justify-center rounded-md border border-transparent bg-shack-orange px-8 py-3 text-base font-medium text-shack-text hover:bg-shack-bright-orange focus:outline-none focus:ring-2 focus:ring-shack-bright-orange focus:ring-offset-2 focus:ring-offset-shack-text sm:w-full select-none"
+                @click.prevent.stop="addToCart"
+              >
+                Add to cart
+              </button>
             </div>
           </form>
 
@@ -99,6 +105,7 @@ const guid = route.params.id;
 const game_info = ref(null);
 
 const userStore = useUserStore();
+const cartStore = useCartStore();
 
 onMounted(async () => {
   const resp = await getGameDetails(guid)
@@ -111,24 +118,33 @@ const details = computed(() => {
   return [
     {
       name: 'Publishers',
-      items: game_info.value.publishers.map(p => p.name),
+      items: game_info.value?.publishers?.map(p => p.name) ?? [],
     },
     {
       name: 'Platforms',
-      items: game_info.value.platforms.map(p => p.name),
+      items: game_info.value?.platforms?.map(p => p.name) ?? [],
     },
     {
       name: 'Franchises',
-      items: game_info.value.franchises.map(f => f.name),
+      items: game_info.value?.franchises?.map(f => f.name) ?? [],
     },
     {
       name: 'Similar Games',
-      items: game_info.value.similar_games.map(s => s.name),
+      items: game_info.value?.similar_games?.map(s => s.name) ?? [],
     },
     {
       name: 'Releases',
-      items: game_info.value.releases.map(r => r.name),
+      items: game_info.value?.releases?.map(r => r.name) ?? [],
     },
   ]
 })
+
+const addToCart = () => {
+  cartStore.addItemToCart({
+    id: game_info.value.id,
+    guid: guid,
+    name: game_info.value.name,
+    image: game_info.value.image.thumb_url,
+  })
+}
 </script>

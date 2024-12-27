@@ -97,13 +97,17 @@ This is just a brief list of the needed items I saw when starting this. They wil
 - [X] Search via Giant Bomb API
 - [X] Item Details Page
 - [X] Auth
-- [ ] Search Pagination
-- [ ] Add items to cart
-- [ ] Cart View
+- [X] Search Pagination
+- [X] Add items to cart
+- [X] Cart View
 - [ ] Checkout
+- [ ] Loading States
+- [ ] Empty States
 
 These ended up being future targets:
 
+- [ ] Error States
+- [ ] Search page(s) recoverable/sharable URLs
 - [ ] Caching Layer
 - [ ] Database to track stock and who has checked out what
 - [ ] Franchise View
