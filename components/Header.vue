@@ -25,8 +25,8 @@
       <DialogPanel class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-shack-gray px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
         <div class="flex items-center justify-between">
           <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Game Shack</span>
-            <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500" alt="" />
+            <Logo class="h-12 w-auto" :text="false" />
+            <span class="text-shack-text ml-2">Cat Shack Games</span>
           </a>
           <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400" @click="mobileMenuOpen = false">
             <span class="sr-only">Close menu</span>
