@@ -11,11 +11,11 @@
           <!-- Image selector -->
           <div class="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
             <TabList class="grid grid-cols-4 gap-6">
-              <Tab v-for="image in images" :key="image.original" class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-indigo-500/50 focus:ring-offset-4" v-slot="{ selected }">
+              <Tab v-for="image in images" :key="image.original" class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-shack-text hover:bg-shack-text focus:outline-none focus:ring focus:ring-shack-orange/50 focus:ring-offset-4" v-slot="{ selected }">
                 <span class="absolute inset-0 overflow-hidden rounded-md">
                   <img :src="image.thumb_url" alt="" class="size-full object-cover" />
                 </span>
-                <span :class="[selected ? 'ring-indigo-500' : 'ring-transparent', 'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2']" aria-hidden="true" />
+                <span :class="[selected ? 'ring-shack-orange' : 'ring-transparent', 'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2']" aria-hidden="true" />
               </Tab>
             </TabList>
           </div>
@@ -43,7 +43,7 @@
 
           <form v-if="userStore.isUserLoggedIn" class="mt-6">
             <div class="mt-10 flex">
-              <button type="submit" class="flex w-1/2 flex-1 items-center justify-center rounded-md border border-transparent bg-shack-orange px-8 py-3 text-base font-medium text-shack-text hover:bg-shack-bright-orange focus:outline-none focus:ring-2 focus:ring-shack-bright-orange focus:ring-offset-2 focus:ring-offset-shack-text sm:w-full">Add to cart</button>
+              <button type="submit" class="flex w-1/2 flex-1 items-center justify-center rounded-md border border-transparent bg-shack-orange px-8 py-3 text-base font-medium text-shack-text hover:bg-shack-bright-orange focus:outline-none focus:ring-2 focus:ring-shack-bright-orange focus:ring-offset-2 focus:ring-offset-shack-text sm:w-full select-none">Add to cart</button>
             </div>
           </form>
 
@@ -106,15 +106,9 @@ onMounted(async () => {
   game_info.value = resp.results;
 })
 
-const images = computed(() => game_info.value.images?.slice(0,10) ?? [])
+const images = computed(() => game_info.value.images?.slice(0,8) ?? [])
 const details = computed(() => {
   return [
-  /*
-    {
-      name: 'Description',
-      content: '',
-    },
-    */
     {
       name: 'Publishers',
       items: game_info.value.publishers.map(p => p.name),

@@ -7,7 +7,7 @@
           <component :is="item.icon" class="size-6" aria-hidden="true" />
         </a>
       </div>
-      <p class="mt-8 text-center text-sm/6 text-gray-400 md:order-1 md:mt-0">&copy; 2024 Cat Shack Games, Inc. All rights reserved.</p>
+      <p class="mt-8 text-center text-sm/6 text-gray-400 md:order-1 md:mt-0">&copy; 2024 Cat Shack Games, All rights reserved.</p>
     </div>
   </footer>
 </template>
