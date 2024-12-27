@@ -45,7 +45,7 @@
 
 <script lang="ts" setup>
   interface Props {
-    text: boolean
+    text?: boolean
   }
 
   const props = withDefaults(defineProps<Props>(), {
