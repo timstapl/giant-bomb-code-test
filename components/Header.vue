@@ -17,7 +17,7 @@
         <a v-for="item in navigation" :key="item.name" :href="item.href" class="text-sm/6 font-semibold text-shack-text">{{ item.name }}</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm/6 font-semibold text-shack-text">Log in <span aria-hidden="true">&rarr;</span></a>
+        <div class="text-shack-text lg:flex lg:flex-row" data-netlify-identity-menu></div>
       </div>
     </nav>
     <Dialog class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
@@ -39,7 +39,7 @@
               <a v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-shack-text hover:bg-gray-800">{{ item.name }}</a>
             </div>
             <div class="py-6">
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-shack-text hover:bg-gray-800">Log in</a>
+              <div class="text-shack-text" data-netlify-identity-button>Log In</div>
             </div>
           </div>
         </div>
@@ -60,4 +60,17 @@ const navigation = [
 ]
 
 const mobileMenuOpen = ref(false)
+
+useHead({
+  script: [ { src: `https://identity.netlify.com/v1/netlify-identity-widget.js` } ],
+})
 </script>
+
+<style>
+  .netlify-identity-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 8em;
+  }
+</style>
