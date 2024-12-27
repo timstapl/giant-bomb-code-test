@@ -65,8 +65,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 import netlifyIdentity from 'netlify-identity-widget'
 
 const navigation = [
-  { name: 'Games', href: '/games', loggedInOnly: false },
   { name: 'Search', href: '/search', loggedInOnly: false },
+  { name: 'My Games', href: '/games', loggedInOnly: true },
   { name: 'Cart', href: '/cart', loggedInOnly: true },
 ]
 
