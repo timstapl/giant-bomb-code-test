@@ -27,7 +27,6 @@
         </template>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <!-- <div class="text-shack-text lg:flex lg:flex-row" data-netlify-identity-menu></div> -->
         <div 
           v-if="userStore.isUserLoggedIn"
           class="text-shack-text lg:flex lg:flex-row cursor-pointer select-none"
