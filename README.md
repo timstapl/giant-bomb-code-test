@@ -87,29 +87,29 @@ bun run preview
 
 ### Live site
 
-    - This project has been deployed to: https://giantbombcodetest.netlify.app/
+- This project has been deployed to: https://giantbombcodetest.netlify.app/
 
 ### To Do List
 
 This is just a brief list of the needed items I saw when starting this. They will likely not all get done as part of this challenge, but I wanted to indicate what next steps I saw as well.
 
-    - [X] Scaffold out project
-    - [X] Search via Giant Bomb API
-    - [X] Item Details Page
-    - [X] Auth
-    - [ ] Search Pagination
-    - [ ] Add items to cart
-    - [ ] Cart View
-    - [ ] Checkout
+- [X] Scaffold out project
+- [X] Search via Giant Bomb API
+- [X] Item Details Page
+- [X] Auth
+- [ ] Search Pagination
+- [ ] Add items to cart
+- [ ] Cart View
+- [ ] Checkout
 
 These ended up being future targets:
 
-    - [ ] Caching Layer
-    - [ ] Database to track stock and who has checked out what
-    - [ ] Franchise View
-    - [ ] Genre View
-    - [ ] Mature API to an EC2 instance, rather than serverless
-    - [ ] Reverse Proxy and Load Balancer for API
-    - [ ] User Roles (Owner, Admin, Client)
-    - [ ] Admin area to update stock levels, add new games
+- [ ] Caching Layer
+- [ ] Database to track stock and who has checked out what
+- [ ] Franchise View
+- [ ] Genre View
+- [ ] Mature API to an EC2 instance, rather than serverless
+- [ ] Reverse Proxy and Load Balancer for API
+- [ ] User Roles (Owner, Admin, Client)
+- [ ] Admin area to update stock levels, add new games
 
