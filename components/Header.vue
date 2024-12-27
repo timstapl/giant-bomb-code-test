@@ -48,7 +48,7 @@
       <div class="fixed inset-0 z-10" />
       <DialogPanel class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-shack-gray px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
         <div class="flex items-center justify-between">
-          <NuxtLink href="/" class="-m-1.5 p-1.5">
+          <NuxtLink href="/" class="-m-1.5 p-1.5 flex flex-row items-center justify-center">
             <Logo class="h-12 w-auto" :text="false" />
             <span class="text-shack-text ml-2">Cat Shack Games</span>
           </NuxtLink>
@@ -59,11 +59,36 @@
         </div>
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/25">
-            <div class="space-y-2 py-6">
-              <NuxtLink v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-shack-text hover:bg-gray-800">{{ item.name }}</NuxtLink>
+            <div class="space-y-2 py-6 flex flex-col">
+              <template
+                v-for="item in navigation"
+                :key="item.name"
+                :href="item.href" 
+                class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-shack-text hover:bg-shack-orange"
+              >
+                <NuxtLink 
+                  v-if="userStore.isUserLoggedIn || !item.loggedInOnly"
+                  class="font-semibold text-shack-text"
+                >
+                  {{ item.name }}
+                </NuxtLink>
+            </template>
             </div>
             <div class="py-6">
-              <div class="text-shack-text" data-netlify-identity-button>Log In</div>
+              <div 
+                v-if="userStore.isUserLoggedIn"
+                class="text-shack-text cursor-pointer"
+                @click="requestLogout"
+              >
+                Log Out
+              </div>
+              <div
+                v-else 
+                class="text-shack-text"
+                @click="requestLogin"
+              >
+                Log In
+              </div>
             </div>
           </div>
         </div>
