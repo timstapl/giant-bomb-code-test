@@ -1,6 +1,10 @@
 <template>
   <div class="bg-shack-gray">
-    <div v-if="game_info !== null" class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <div v-if="game_info === null" class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 text-shack-text">
+      <!-- TODO: add spinner / loading state -->
+      Loading... 
+    </div>
+    <div v-else class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
       <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
         <!-- Image gallery -->
         <TabGroup as="div" class="flex flex-col-reverse">
@@ -8,9 +12,8 @@
           <div class="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
             <TabList class="grid grid-cols-4 gap-6">
               <Tab v-for="image in images" :key="image.original" class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-indigo-500/50 focus:ring-offset-4" v-slot="{ selected }">
-              <!-- <span class="sr-only">{{ image.name }}</span> -->
                 <span class="absolute inset-0 overflow-hidden rounded-md">
-                  <img :src="image.super_url" alt="" class="size-full object-cover" />
+                  <img :src="image.thumb_url" alt="" class="size-full object-cover" />
                 </span>
                 <span :class="[selected ? 'ring-indigo-500' : 'ring-transparent', 'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2']" aria-hidden="true" />
               </Tab>
@@ -19,7 +22,7 @@
 
           <TabPanels>
             <TabPanel v-for="image in images" :key="image.original">
-              <img :src="image.thumb_url" alt="thumbnails" class="aspect-square w-full object-cover sm:rounded-lg" />
+              <img :src="image.super_url" alt="thumbnails" class="aspect-square w-full object-cover sm:rounded-lg" />
             </TabPanel>
           </TabPanels>
         </TabGroup>
@@ -38,7 +41,7 @@
             <div class="space-y-6 text-base text-shack-text" v-html="game_info.description ?? game_info.deck" />
           </div>
 
-          <form class="mt-6">
+          <form v-if="userStore.isUserLoggedIn" class="mt-6">
             <div class="mt-10 flex">
               <button type="submit" class="flex w-1/2 flex-1 items-center justify-center rounded-md border border-transparent bg-shack-orange px-8 py-3 text-base font-medium text-shack-text hover:bg-shack-bright-orange focus:outline-none focus:ring-2 focus:ring-shack-bright-orange focus:ring-offset-2 focus:ring-offset-shack-text sm:w-full">Add to cart</button>
             </div>
@@ -94,6 +97,8 @@ import { getGameDetails } from '@/utils/games';
 const route = useRoute()
 const guid = route.params.id;
 const game_info = ref(null);
+
+const userStore = useUserStore();
 
 onMounted(async () => {
   const resp = await getGameDetails(guid)

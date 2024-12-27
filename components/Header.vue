@@ -27,7 +27,21 @@
         </template>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <div class="text-shack-text lg:flex lg:flex-row" data-netlify-identity-menu></div>
+        <!-- <div class="text-shack-text lg:flex lg:flex-row" data-netlify-identity-menu></div> -->
+        <div 
+          v-if="userStore.isUserLoggedIn"
+          class="text-shack-text lg:flex lg:flex-row cursor-pointer select-none"
+          @click="requestLogout"
+        >
+          Log Out
+        </div>
+        <div 
+          v-else 
+          class="text-shack-text lg:flex lg:flex-row cursor-pointer select-none"
+          @click="requestLogin"
+        >
+          Log In
+        </div>
       </div>
     </nav>
     <Dialog class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
@@ -66,7 +80,8 @@ import netlifyIdentity from 'netlify-identity-widget'
 
 const navigation = [
   { name: 'Search', href: '/search', loggedInOnly: false },
-  { name: 'My Games', href: '/games', loggedInOnly: true },
+  // TODO: future feature, list currently checked out games, and previously checked out games
+  // { name: 'My Games', href: '/games', loggedInOnly: true },
   { name: 'Cart', href: '/cart', loggedInOnly: true },
 ]
 
@@ -94,6 +109,8 @@ onMounted(() => {
       token: user.token,
       name: user.user_metadata.full_name,
     });
+
+    netlifyIdentity.close();
   })
 
   netlifyIdentity.on('logout', () => {
@@ -105,6 +122,14 @@ onMounted(() => {
     APIUrl: "https://giantbombcodetest.netlify.app/.netlify/identity",
   })
 })
+
+const requestLogin = () => {
+  netlifyIdentity.open();
+}
+
+const requestLogout = () => {
+  netlifyIdentity.logout();
+}
 </script>
 
 <style>
