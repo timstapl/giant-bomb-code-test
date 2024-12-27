@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-shack-gray h-screen w-full flex flex-col items-center px-12">
+  <div class="bg-shack-gray min-h-screen w-full flex flex-col items-center px-12">
     <div id="spacer" class="h-32"></div>
     <div class="text-shack-text w-full flex flex-row justify-center items-center">
       <div class="w-full flex justify-center items-center">
         <label class="w-1/3 text-right pr-4 sr-only" for="search">Find your next Adventure</label>
         <input
-          class="w-2/5 bg-shack-text rounded-lg text-shack-gray"
+          class="w-2/5 bg-shack-text rounded-lg text-shack-gray h-8 p-2"
           type="text"
           id="search"
           v-model="query"
@@ -21,12 +21,7 @@
           Find your next Adventure
         </button>
     </div>
-    <pre class="text-shack-text block">
-      {{ PageState[page_status] }}
-    </pre>
-    <pre class="text-shack-text block">
-      {{ results }}
-    </pre>
+    <GameList v-if="page_status === PageState.Results" />
   </div>
 </template>
 
@@ -45,6 +40,7 @@
   const query = ref('')
   const page_status = ref(PageState.Loading);
   const results = ref()
+  const gamesStore = useGamesStore();
 
   onMounted(() => {
     page_status.value = PageState.Ready;
@@ -54,8 +50,8 @@
     page_status.value = PageState.Loading
     try {
       const response = await searchForGame(query.value);
-      // TODO: this could be empty or error, need to detect and handle those cases
-      console.log("results received: ", response);
+
+      gamesStore.setResults(response);
       results.value = response;
 
       if ( response.error === "OK" && response.number_of_page_results > 0 && response.number_of_total_results > 0) {
