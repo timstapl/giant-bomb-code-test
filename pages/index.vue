@@ -4,7 +4,7 @@
 
 <template>
   <div class="bg-shack-gray h-screen w-full">
-    <main class="w-full flex justify-between text-shack-text pt-4">
+    <main class="w-full flex justify-between text-shack-text">
         <div id="hero-left" class="h-96 flex justify-center items-center w-1/2 ml-6 text-right">
           <p class="ml-24">
             All the latest game news, videos, reviews, and rentals straight to your door!

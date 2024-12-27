@@ -1,10 +1,10 @@
 <template>
-  <header class="fixed w-full bg-shack-gray drop-shadow-lg shadow-black mb-4">
+  <header class="w-full bg-shack-gray drop-shadow-lg shadow-black">
     <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
       <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1.5">
-          <span class="sr-only">Game Shack</span>
-          <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500" alt="" />
+        <a href="#" class="-m-1.5 p-1.5 flex justify-center items-center">
+          <Logo class="h-12 w-auto" :text="false" />
+          <span class="text-shack-text ml-2">Cat Shack Games</span>
         </a>
       </div>
       <div class="flex lg:hidden">
@@ -54,7 +54,6 @@ import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 const navigation = [
-  { name: 'Home', href: '/' },
   { name: 'Games', href: '/games' },
   { name: 'Search', href: '/search' },
   { name: 'Cart', href: '/cart' },
