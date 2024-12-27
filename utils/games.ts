@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-export const searchForGame = function (query) {
-  axios.get('/.netlify/functions/search', {
+export const searchForGame = async function (query: string) {
+  const response = await axios.get('/.netlify/functions/search', {
     params: {
       format: 'json',
       query,
     },
   })
+
+  return response.data;
 }
 
