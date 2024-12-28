@@ -24,3 +24,11 @@ export const getGameDetails = async function (guid: string) {
   return response.data;
 }
 
+export const checkoutGames = async function (cart: Array<any>) {
+  const response = await axios.post('/.netlify/functions/checkout', {
+    cart
+  })
+
+  return response.data;
+}
+
