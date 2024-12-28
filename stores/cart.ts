@@ -50,11 +50,18 @@ export const useCartStore = defineStore('cart', {
 
         this.cart_status = CartStatus.Checkedout;
 
+        setTimeout(this.reset, 1500);
+
       } catch(e) {
         console.warn("checkout error: ", e);
 
         this.cart_status = CartStatus.Error;
       }
+    },
+    reset() {
+      this.items = [];
+      this.checked_out_items = [];
+      this.cart_status = CartStatus.Ready;
     },
   },
   getters: {

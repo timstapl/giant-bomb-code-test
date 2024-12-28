@@ -100,9 +100,9 @@ This is just a brief list of the needed items I saw when starting this. They wil
 - [X] Search Pagination
 - [X] Add items to cart
 - [X] Cart View
-- [ ] Checkout
-- [ ] Loading States
-- [ ] Empty States
+- [X] Checkout
+- [X] Loading States
+- [X] Empty States
 
 These ended up being future targets:
 
